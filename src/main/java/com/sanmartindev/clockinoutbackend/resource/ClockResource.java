@@ -5,8 +5,6 @@ import com.sanmartindev.clockinoutbackend.repository.ClockRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Clock;
-import java.time.Instant;
 import java.time.LocalTime;
 import java.util.List;
 

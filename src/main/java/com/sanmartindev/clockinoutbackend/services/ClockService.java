@@ -26,6 +26,15 @@ public class ClockService {
         return repo.findById(id).orElse(null);
     }
 
+    public Long findLastId() {
+        List<Clock> records = repo.findAll();
+        if (!records.isEmpty()) {
+            return records.get(records.size() - 1).getId();
+        } else {
+            return null;
+        }
+    }
+
     public Clock clockIn(String clockIn) {
         Clock record = new Clock();
         record.setClockIn(clockIn);

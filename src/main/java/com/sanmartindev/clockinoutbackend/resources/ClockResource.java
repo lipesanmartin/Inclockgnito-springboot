@@ -30,6 +30,11 @@ public class ClockResource {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
+    @GetMapping(value = "/last")
+    public ResponseEntity<Long> findLastId() {
+        return ResponseEntity.ok().body(service.findLastId());
+    }
+
 
     @PostMapping()
     public ResponseEntity<Clock> create(@RequestBody String clockIn) {

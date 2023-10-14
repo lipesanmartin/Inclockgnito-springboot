@@ -1,7 +1,7 @@
-package com.sanmartindev.clockinoutbackend.service;
+package com.sanmartindev.clockinoutbackend.services;
 
-import com.sanmartindev.clockinoutbackend.model.Clock;
-import com.sanmartindev.clockinoutbackend.repository.ClockRepository;
+import com.sanmartindev.clockinoutbackend.models.Clock;
+import com.sanmartindev.clockinoutbackend.repositories.ClockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,17 +27,17 @@ public class ClockService {
         return repo.findById(id).orElse(null);
     }
 
-    public Clock clockIn() {
+    public Clock clockIn(String clockIn) {
         Clock record = new Clock();
-        record.setClockIn(LocalTime.now());
+        record.setClockIn(clockIn);
         return repo.save(record);
     }
 
-    public Clock clockOut(@PathVariable Long id) {
+    public Clock clockOut(@PathVariable Long id, String clockOut) {
         try {
             Clock record = repo.findById(id).orElse(null);
             if (record != null) {
-                record.setClockOut(LocalTime.now());
+                record.setClockOut(clockOut);
                 record.setTotalTime(record.getClockIn(), record.getClockOut());
                 return repo.save(record);
             }

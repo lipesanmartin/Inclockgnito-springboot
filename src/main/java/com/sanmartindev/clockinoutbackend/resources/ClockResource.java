@@ -1,7 +1,7 @@
-package com.sanmartindev.clockinoutbackend.resource;
+package com.sanmartindev.clockinoutbackend.resources;
 
-import com.sanmartindev.clockinoutbackend.model.Clock;
-import com.sanmartindev.clockinoutbackend.service.ClockService;
+import com.sanmartindev.clockinoutbackend.models.Clock;
+import com.sanmartindev.clockinoutbackend.services.ClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/clocks")
 public class ClockResource {
+
 
     private final ClockService service;
 
@@ -24,23 +25,23 @@ public class ClockResource {
         return ResponseEntity.ok().body(service.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Clock> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
 
-    @PostMapping("")
-    public ResponseEntity<Clock> create() {
-        return ResponseEntity.ok().body(service.clockIn());
+    @PostMapping()
+    public ResponseEntity<Clock> create(@RequestBody String clockIn) {
+        return ResponseEntity.ok().body(service.clockIn(clockIn));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Clock> clockOut(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.clockOut(id));
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Clock> clockOut(@PathVariable Long id, @RequestBody String clockOut) {
+        return ResponseEntity.ok().body(service.clockOut(id, clockOut));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

@@ -1,6 +1,7 @@
-package com.sanmartindev.clockinoutbackend.model;
+package com.sanmartindev.clockinoutbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sanmartindev.clockinoutbackend.utils.ClockUtils;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -34,16 +35,16 @@ public class Clock implements Serializable {
         return clockIn;
     }
 
-    public void setClockIn(LocalTime clockIn) {
-        this.clockIn = clockIn;
+    public void setClockIn(String clockIn) {
+        this.clockIn = ClockUtils.parseTimeString(clockIn);
     }
 
     public LocalTime getClockOut() {
         return clockOut;
     }
 
-    public void setClockOut(LocalTime clockOut) {
-        this.clockOut = clockOut;
+    public void setClockOut(String clockOut) {
+        this.clockOut = ClockUtils.parseTimeString(clockOut);
     }
 
     public LocalTime getTotalTime() {

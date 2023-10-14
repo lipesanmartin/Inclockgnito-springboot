@@ -1,64 +1,48 @@
 package com.sanmartindev.clockinoutbackend.resource;
 
-import com.sanmartindev.clockinoutbackend.model.ClockRecord;
-import com.sanmartindev.clockinoutbackend.repository.ClockRecordRepository;
+import com.sanmartindev.clockinoutbackend.model.Clock;
+import com.sanmartindev.clockinoutbackend.service.ClockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/clocks")
 public class ClockResource {
 
-    private final ClockRecordRepository repo;
+    private final ClockService service;
 
     @Autowired
-    public ClockResource(ClockRecordRepository repo) {
-        this.repo = repo;
+    public ClockResource(ClockService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public List<ClockRecord> getAll() {
-        return repo.findAll();
+    public ResponseEntity<List<Clock>> findAll() {
+        return ResponseEntity.ok().body(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ClockRecord getById(@PathVariable Long id) {
-        return repo.findById(id).orElse(null);
+    public ResponseEntity<Clock> findById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.findById(id));
     }
 
 
     @PostMapping("")
-    public void clockIn() {
-        ClockRecord record = new ClockRecord();
-        record.setClockIn(LocalTime.now());
-        repo.save(record);
+    public ResponseEntity<Clock> create() {
+        return ResponseEntity.ok().body(service.clockIn());
     }
 
     @PutMapping("/{id}")
-    public void clockOut(@PathVariable Long id) {
-        try {
-            ClockRecord record = repo.findById(id).orElse(null);
-            if (record != null) {
-                record.setClockOut(LocalTime.now());
-                repo.save(record);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public ResponseEntity<Clock> clockOut(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.clockOut(id));
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        try {
-            repo.deleteById(id);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        ;
+        service.delete(id);
     }
-
 
 }

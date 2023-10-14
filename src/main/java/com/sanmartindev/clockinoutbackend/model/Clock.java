@@ -4,16 +4,18 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "clocks")
-public class ClockRecord implements Serializable {
+public class Clock implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clock_id", nullable = false)
     private Long id;
+
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime clockIn;
@@ -21,12 +23,11 @@ public class ClockRecord implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime clockOut;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    private LocalTime totalTime;
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalTime getClockIn() {
@@ -45,11 +46,20 @@ public class ClockRecord implements Serializable {
         this.clockOut = clockOut;
     }
 
+    public LocalTime getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(LocalTime clockIn, LocalTime clockOut) {
+        Duration duration = Duration.between(clockIn, clockOut);
+        this.totalTime = LocalTime.ofSecondOfDay(duration.getSeconds());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClockRecord clock = (ClockRecord) o;
+        Clock clock = (Clock) o;
         return Objects.equals(id, clock.id);
     }
 
@@ -57,5 +67,7 @@ public class ClockRecord implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }
 

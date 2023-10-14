@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sanmartindev.clockinoutbackend.utils.ClockUtils;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -12,6 +13,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "clocks")
 public class Clock implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "clock_id", nullable = false)
@@ -26,6 +30,7 @@ public class Clock implements Serializable {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime totalTime;
+
 
     public Long getId() {
         return id;

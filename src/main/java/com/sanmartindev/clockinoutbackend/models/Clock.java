@@ -18,7 +18,7 @@ public class Clock implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clock_id", nullable = false)
+    @Column(name = "id_clock", nullable = false)
     private Long id;
 
 

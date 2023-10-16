@@ -46,6 +46,16 @@ public class ClockResource {
         return ResponseEntity.ok().body(service.clockOut(id, clockOut));
     }
 
+    @PutMapping(value = "/{id}/pause")
+    public ResponseEntity<Clock> pauseIn(@PathVariable Long id, @RequestBody String pauseIn) {
+        return ResponseEntity.ok().body(service.pauseIn(id, pauseIn));
+    }
+
+    @PutMapping(value = "/{id}/unpause")
+    public ResponseEntity<Clock> pauseOut(@PathVariable Long id, @RequestBody String pauseOut) {
+        return ResponseEntity.ok().body(service.pauseOut(id, pauseOut));
+    }
+
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);

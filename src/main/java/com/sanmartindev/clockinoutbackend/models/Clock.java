@@ -29,6 +29,12 @@ public class Clock implements Serializable {
     private LocalTime clockOut;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    private LocalTime pauseIn;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    private LocalTime pauseOut;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime totalTime;
 
 
@@ -52,14 +58,36 @@ public class Clock implements Serializable {
         this.clockOut = ClockUtils.parseTimeString(clockOut);
     }
 
+    public LocalTime getPauseIn() {
+        return pauseIn;
+    }
+
+    public void setPauseIn(String pauseIn) {
+        this.pauseIn = ClockUtils.parseTimeString(pauseIn);
+    }
+
+    public LocalTime getPauseOut() {
+        return pauseOut;
+    }
+
+    public void setPauseOut(String pauseOut) {
+        this.pauseOut = ClockUtils.parseTimeString(pauseOut);
+    }
+
     public LocalTime getTotalTime() {
         return totalTime;
     }
 
+
     public void setTotalTime(LocalTime clockIn, LocalTime clockOut) {
-        Duration duration = Duration.between(clockIn, clockOut);
-        this.totalTime = LocalTime.ofSecondOfDay(duration.getSeconds());
+        Duration total = Duration.between(clockIn, clockOut);
+        if (pauseIn != null && pauseOut != null) {
+            Duration pause = Duration.between(pauseIn, pauseOut);
+            total = total.minus(pause);
+        }
+        this.totalTime = LocalTime.ofSecondOfDay(total.getSeconds());
     }
+
 
     @Override
     public boolean equals(Object o) {

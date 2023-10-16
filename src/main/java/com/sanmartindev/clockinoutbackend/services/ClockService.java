@@ -54,6 +54,30 @@ public class ClockService {
         } return null;
     }
 
+    public Clock pauseIn(@PathVariable Long id, String pauseIn) {
+        try {
+            Clock record = repo.findById(id).orElse(null);
+            if (record != null) {
+                record.setPauseIn(pauseIn);
+                return repo.save(record);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } return null;
+    }
+
+    public Clock pauseOut(@PathVariable Long id, String pauseOut) {
+        try {
+            Clock record = repo.findById(id).orElse(null);
+            if (record != null) {
+                record.setPauseOut(pauseOut);
+                return repo.save(record);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } return null;
+    }
+
     public void delete(Long id) {
         try {
             repo.deleteById(id);

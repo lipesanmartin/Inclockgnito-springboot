@@ -80,12 +80,21 @@ public class Clock implements Serializable {
 
 
     public void setTotalTime(LocalTime clockIn, LocalTime clockOut) {
-        Duration total = Duration.between(clockIn, clockOut);
-        if (pauseIn != null && pauseOut != null) {
-            Duration pause = Duration.between(pauseIn, pauseOut);
-            total = total.minus(pause);
+        try {
+            Duration total;
+            if (clockOut.isBefore(clockIn)) {
+                total = Duration.between(clockOut.plusHours(12), clockIn);
+            } else {
+                total = Duration.between(clockIn, clockOut);
+            }
+            if (pauseIn != null && pauseOut != null) {
+                Duration pause = Duration.between(pauseIn, pauseOut);
+                total = total.minus(pause);
+            }
+            this.totalTime = LocalTime.ofSecondOfDay(total.getSeconds());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        this.totalTime = LocalTime.ofSecondOfDay(total.getSeconds());
     }
 
 

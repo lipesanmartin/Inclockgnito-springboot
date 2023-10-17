@@ -83,7 +83,7 @@ public class Clock implements Serializable {
         try {
             Duration total;
             if (clockOut.isBefore(clockIn)) {
-                total = Duration.between(clockOut.plusHours(12), clockIn);
+                total = Duration.between(clockIn.minusHours(12), clockOut.plusHours(12));
             } else {
                 total = Duration.between(clockIn, clockOut);
             }

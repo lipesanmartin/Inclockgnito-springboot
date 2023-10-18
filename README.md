@@ -24,7 +24,14 @@ spring.datasource.password=sua_senha
 
 ## Configuração do Java
 
-Certifique-se de que o JDK 17 esteja instalado e configurado corretamente em sua máquina. Siga as etapas apropriadas para configurar a variável de ambiente `JAVA_HOME`:
+Certifique-se de que o JDK 17 esteja instalado e configurado corretamente em sua máquina. 
+
+```bash
+java -version
+```
+
+
+Siga as etapas apropriadas para configurar a variável de ambiente `JAVA_HOME`:
 
 **No Windows:**
 

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -35,47 +39,54 @@ public class ClockService {
         }
     }
 
-    public Clock clockIn(String clockIn) {
+    public Clock clockIn() { // trocar para clockin pelo servidor
+        ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
         Clock record = new Clock();
-        record.setClockIn(clockIn);
+        record.setClockIn(serverTime.toLocalTime());
         return repo.save(record);
     }
 
-    public Clock clockOut(@PathVariable Long id, String clockOut) {
+    public Clock clockOut(@PathVariable Long id) {
         try {
             Clock record = repo.findById(id).orElse(null);
             if (record != null) {
-                record.setClockOut(clockOut);
+                ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
+                record.setClockOut(serverTime.toLocalTime());
                 record.setTotalTime(record.getClockIn(), record.getClockOut());
                 return repo.save(record);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } return null;
+        }
+        return null;
     }
 
-    public Clock pauseIn(@PathVariable Long id, String pauseIn) {
+    public Clock pauseIn(@PathVariable Long id) {
         try {
             Clock record = repo.findById(id).orElse(null);
             if (record != null) {
-                record.setPauseIn(pauseIn);
+                ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
+                record.setPauseIn(serverTime.toLocalTime());
                 return repo.save(record);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } return null;
+        }
+        return null;
     }
 
-    public Clock pauseOut(@PathVariable Long id, String pauseOut) {
+    public Clock pauseOut(@PathVariable Long id) {
         try {
             Clock record = repo.findById(id).orElse(null);
             if (record != null) {
-                record.setPauseOut(pauseOut);
+                ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
+                record.setPauseOut(serverTime.toLocalTime());
                 return repo.save(record);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } return null;
+        }
+        return null;
     }
 
     public void delete(Long id) {

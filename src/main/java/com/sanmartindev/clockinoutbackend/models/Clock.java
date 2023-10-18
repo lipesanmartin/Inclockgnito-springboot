@@ -26,13 +26,13 @@ public class Clock implements Serializable {
     private LocalTime clockIn;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
-    private LocalTime clockOut;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime pauseIn;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime pauseOut;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    private LocalTime clockOut;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime totalTime;
@@ -46,32 +46,32 @@ public class Clock implements Serializable {
         return clockIn;
     }
 
-    public void setClockIn(String clockIn) {
-        this.clockIn = ClockUtils.parseTimeString(clockIn);
+    public void setClockIn(LocalTime clockIn) {
+        this.clockIn = clockIn;
     }
 
     public LocalTime getClockOut() {
         return clockOut;
     }
 
-    public void setClockOut(String clockOut) {
-        this.clockOut = ClockUtils.parseTimeString(clockOut);
+    public void setClockOut(LocalTime clockOut) {
+        this.clockOut = clockOut;
     }
 
     public LocalTime getPauseIn() {
         return pauseIn;
     }
 
-    public void setPauseIn(String pauseIn) {
-        this.pauseIn = ClockUtils.parseTimeString(pauseIn);
+    public void setPauseIn(LocalTime pauseIn) {
+        this.pauseIn = pauseIn;
     }
 
     public LocalTime getPauseOut() {
         return pauseOut;
     }
 
-    public void setPauseOut(String pauseOut) {
-        this.pauseOut = ClockUtils.parseTimeString(pauseOut);
+    public void setPauseOut(LocalTime pauseOut) {
+        this.pauseOut = pauseOut;
     }
 
     public LocalTime getTotalTime() {

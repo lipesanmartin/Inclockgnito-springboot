@@ -36,24 +36,24 @@ public class ClockResource {
     }
 
 
-    @PostMapping()
-    public ResponseEntity<Clock> create(@RequestBody String clockIn) {
-        return ResponseEntity.ok().body(service.clockIn(clockIn));
+    @GetMapping(value = "/clock-in")
+    public ResponseEntity<Clock> clockIn() { // trocar para get
+        return ResponseEntity.ok().body(service.clockIn());
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Clock> clockOut(@PathVariable Long id, @RequestBody String clockOut) {
-        return ResponseEntity.ok().body(service.clockOut(id, clockOut));
+    @GetMapping(value = "/{id}/clock-out")
+    public ResponseEntity<Clock> clockOut(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.clockOut(id));
     }
 
-    @PutMapping(value = "/{id}/pause")
-    public ResponseEntity<Clock> pauseIn(@PathVariable Long id, @RequestBody String pauseIn) {
-        return ResponseEntity.ok().body(service.pauseIn(id, pauseIn));
+    @GetMapping (value = "/{id}/pause")
+    public ResponseEntity<Clock> pauseIn(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.pauseIn(id));
     }
 
-    @PutMapping(value = "/{id}/unpause")
-    public ResponseEntity<Clock> pauseOut(@PathVariable Long id, @RequestBody String pauseOut) {
-        return ResponseEntity.ok().body(service.pauseOut(id, pauseOut));
+    @GetMapping(value = "/{id}/unpause")
+    public ResponseEntity<Clock> pauseOut(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.pauseOut(id));
     }
 
     @DeleteMapping(value = "/{id}")

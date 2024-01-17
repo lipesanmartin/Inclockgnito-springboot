@@ -1,7 +1,8 @@
-package com.sanmartindev.clockinoutbackend.resources;
+package com.sanmartindev.clockinoutbackend.controllers;
 
 import com.sanmartindev.clockinoutbackend.models.Clock;
 import com.sanmartindev.clockinoutbackend.services.ClockService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,14 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/clocks")
-public class ClockResource {
+@RequestMapping(value = "/api/clocks")
+@Tag(name = "Clocks", description = "Clocks API")
+public class ClockController {
 
 
     private final ClockService service;
 
     @Autowired
-    public ClockResource(ClockService service) {
+    public ClockController(ClockService service) {
         this.service = service;
     }
 

@@ -33,7 +33,7 @@ public class ClockService {
     public Long findLastId() {
         List<Clock> records = repo.findAll();
         if (!records.isEmpty()) {
-            return records.get(records.size() - 1).getId();
+            return records.getLast().getId();
         } else {
             return null;
         }

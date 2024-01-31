@@ -36,6 +36,10 @@ public class Clock implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime totalTime;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
     public Long getId() {
         return id;
@@ -77,6 +81,13 @@ public class Clock implements Serializable {
         return totalTime;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public void setTotalTime(LocalTime clockIn, LocalTime clockOut) {
         try {

@@ -12,7 +12,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+
 public class User implements UserDetails, Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -96,7 +98,6 @@ public class User implements UserDetails, Serializable {
         this.username = username;
     }
 
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -125,6 +126,7 @@ public class User implements UserDetails, Serializable {
         this.permissions = permissions;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -136,5 +138,6 @@ public class User implements UserDetails, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled, permissions);
+
     }
 }

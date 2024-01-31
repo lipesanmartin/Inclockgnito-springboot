@@ -1,7 +1,6 @@
 package com.sanmartindev.clockinoutbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sanmartindev.clockinoutbackend.utils.ClockUtils;
 import jakarta.persistence.*;
 
 import java.io.Serial;

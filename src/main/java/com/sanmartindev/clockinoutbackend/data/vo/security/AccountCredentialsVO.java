@@ -11,10 +11,13 @@ public class AccountCredentialsVO implements Serializable {
 
     private String fullname;
 
-    public AccountCredentialsVO(String username, String password, String fullname) {
+    private String email;
+
+    public AccountCredentialsVO(String username, String password, String fullname, String email) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
+        this.email = email;
     }
 
 
@@ -29,6 +32,10 @@ public class AccountCredentialsVO implements Serializable {
 
     public String getFullname() {
         return fullname;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

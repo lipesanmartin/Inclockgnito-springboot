@@ -1,9 +1,11 @@
 package com.sanmartindev.clockinoutbackend.controllers;
 
+import com.sanmartindev.clockinoutbackend.exceptions.ClockInvalidOperationException;
 import com.sanmartindev.clockinoutbackend.models.Clock;
 import com.sanmartindev.clockinoutbackend.services.ClockService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,25 +34,42 @@ public class ClockController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @GetMapping(value = "/last")
-    public ResponseEntity<Long> findLastId() {
-        return ResponseEntity.ok().body(service.findLastId());
+    @GetMapping(value = "/{username}/all")
+    public ResponseEntity<List<Clock>> findAllByUsername(@PathVariable String username) {
+        return ResponseEntity.ok().body(service.findAllByUsername(username));
+    }
+
+    @GetMapping(value = "/{username}/last")
+    public ResponseEntity<Long> findLastId(@PathVariable String username) {
+        return ResponseEntity.ok().body(service.findLastId(username));
     }
 
 
-    @GetMapping(value = "/clock-in")
-    public ResponseEntity<Clock> clockIn() { // trocar para get
-        return ResponseEntity.ok().body(service.clockIn());
+    @GetMapping(value = "/{username}/clock-in")
+    public ResponseEntity<?> clockIn(@PathVariable String username) {
+        try {
+            return ResponseEntity.ok().body(service.clockIn(username));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @GetMapping(value = "/{id}/clock-out")
-    public ResponseEntity<Clock> clockOut(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.clockOut(id));
+    @GetMapping(value = "/{username}/clock-out")
+    public ResponseEntity<?> clockOut(@PathVariable String username) {
+        try {
+            return ResponseEntity.ok().body(service.clockOut(username));
+        } catch (ClockInvalidOperationException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @GetMapping (value = "/{id}/pause")
-    public ResponseEntity<Clock> pauseIn(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.pauseIn(id));
+    @GetMapping (value = "/{username}/pause")
+    public ResponseEntity<?> pauseIn(@PathVariable String username) {
+        try {
+            return ResponseEntity.ok().body(service.pauseIn(username));
+        } catch (ClockInvalidOperationException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/{id}/unpause")

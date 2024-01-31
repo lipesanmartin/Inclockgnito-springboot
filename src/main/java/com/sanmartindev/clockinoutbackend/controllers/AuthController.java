@@ -38,7 +38,7 @@ public class AuthController {
 
     @PostMapping(value = "/signup")
     public ResponseEntity signup(@RequestBody AccountCredentialsVO data) {
-        if (checkIfParamsIsNotNull(data) || data.getFullname() == null || data.getFullname().isBlank())
+        if (checkIfParamsIsNotNull(data) || data.getFullname() == null || data.getFullname().isBlank() || data.getEmail() == null || data.getEmail().isBlank())
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         return authService.createAccount(data);
     }

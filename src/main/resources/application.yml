@@ -5,10 +5,10 @@ security:
       expire-length: 3600000
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/clock?useSSL=false
-    username: root
-    password: 2205
+    url: jdbc:postgresql://kesavan.db.elephantsql.com/qxhuuhqf
+    username: qxhuuhqf
+    password: AACJ9_93CI_wkp4oho4d5lCC8_w-UbtM
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update

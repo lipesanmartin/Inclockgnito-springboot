@@ -51,8 +51,8 @@ public class ClockService {
         if (user == null) {
             return null;
         }
-        Clock lastClock = clockRepo.findAllByUsername(username).getLast();
-        if (lastClock != null && lastClock.getClockOut() == null) {
+        List<Clock> clocks = clockRepo.findAllByUsername(username);
+        if (!clocks.isEmpty() && clocks.get(clocks.size() - 1).getClockOut() == null) {
             throw new ClockInvalidOperationException("Error! You already have a running clock!");
         }
         ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);

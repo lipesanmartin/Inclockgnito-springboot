@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +22,8 @@ public class Clock implements Serializable {
     @Column(name = "id_clock", nullable = false)
     private Long id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate date;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private LocalTime clockIn;
@@ -43,6 +47,14 @@ public class Clock implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getClockIn() {

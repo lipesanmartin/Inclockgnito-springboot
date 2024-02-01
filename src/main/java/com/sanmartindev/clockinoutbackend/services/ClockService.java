@@ -57,6 +57,7 @@ public class ClockService {
         }
         ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
         Clock clock = new Clock();
+        clock.setDate(serverTime.toLocalDate());
         clock.setClockIn(serverTime.toLocalTime());
         clock.setUser(user);
         return clockRepo.save(clock);

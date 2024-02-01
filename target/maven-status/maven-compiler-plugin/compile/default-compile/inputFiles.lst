@@ -10,6 +10,7 @@ C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\ja
 C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\java\com\sanmartindev\clockinoutbackend\security\Jwt\JwtTokenFilter.java
 C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\java\com\sanmartindev\clockinoutbackend\data\vo\security\AccountCredentialsVO.java
 C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\java\com\sanmartindev\clockinoutbackend\ClockInOutBackendApplication.java
+C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\java\com\sanmartindev\clockinoutbackend\exceptions\ClockInvalidOperationException.java
 C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\java\com\sanmartindev\clockinoutbackend\security\Jwt\JwtTokenProvider.java
 C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\java\com\sanmartindev\clockinoutbackend\repositories\UserRepository.java
 C:\Users\fsa22\ProjetoBetinho\ClockIn-Out-Backend\clockinout-backend\src\main\java\com\sanmartindev\clockinoutbackend\data\vo\security\TokenVO.java

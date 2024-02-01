@@ -5,16 +5,13 @@ security:
       expire-length: 3600000
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cmtkigen7f5s73aq88e0-a.oregon-postgres.render.com/db_inclockgnito_7t5w
-    username: db_inclockgnito_7t5w_user
-    password: xrOsWO14G3afAuHMVF66mczKm6vnIOpt
+    url: jdbc:postgresql://dpg-cmtrikun7f5s73b1kr0g-a.ohio-postgres.render.com/db_inclockgnito_ofd7
+    username: bebety
+    password: nFcso089zpxcymh09tvqK3uwNuOyiQNx
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     open-in-view: false
 springdoc:

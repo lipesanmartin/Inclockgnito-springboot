@@ -7,7 +7,7 @@ spring:
   datasource:
     url: jdbc:postgresql://kesavan.db.elephantsql.com/qxhuuhqf
     username: qxhuuhqf
-    password: AACJ9_93CI_wkp4oho4d5lCC8_w-UbtM
+    password: U-9LRoDB5eysWeaxOZ7BbqIZQopf8TCD
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

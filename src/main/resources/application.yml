@@ -5,9 +5,9 @@ security:
       expire-length: 3600000
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cmtrikun7f5s73b1kr0g-a.ohio-postgres.render.com/db_inclockgnito_ofd7
-    username: bebety
-    password: nFcso089zpxcymh09tvqK3uwNuOyiQNx
+    url: jdbc:postgresql://dpg-cmtvgdgcmk4c7391ktrg-a.ohio-postgres.render.com/db_inclockgnito_ciby
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

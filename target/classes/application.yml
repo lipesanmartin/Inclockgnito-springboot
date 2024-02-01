@@ -1,8 +1,8 @@
 security:
   jwt:
     token:
-      secret-key: kudu41r0
-      expire-length: 3600000
+      secret-key: b3b3tyv4mb0r4
+      expire-length: 43200000
 spring:
   datasource:
     url: jdbc:postgresql://dpg-cmtvgdgcmk4c7391ktrg-a.ohio-postgres.render.com/db_inclockgnito_ciby

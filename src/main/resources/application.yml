@@ -1,13 +1,13 @@
 security:
   jwt:
     token:
-      secret-key: secret
-      expire-length: 3600000
+      secret-key: ${JWT_SECRET_KEY}
+      expire-length: ${JWT_EXPIRE_LENGTH}
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/inclockgnito
-    username: postgres
-    password: 1234
+    url: jdbc:postgresql://dpg-cmtvgdgcmk4c7391ktrg-a.ohio-postgres.render.com/db_inclockgnito_ciby
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -16,8 +16,8 @@ spring:
     open-in-view: false
 springdoc:
   pathsToMatch:
-  - /api/**
-  - /auth/**
+    - /api/**
+    - /auth/**
   swagger-ui:
     use-root-path: true
 

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sanmartindev</groupId>
-    <artifactId>ClockIn-Out-Backend</artifactId>
+    <artifactId>Inclockgnito</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ClockIn-Out-Backend</name>
-    <description>ClockIn-Out-Backend</description>
+    <name>Inclockgnito</name>
+    <description>Inclockgnito</description>
     <properties>
         <java.version>21</java.version>
         <java-jwt.version>3.18.3</java-jwt.version>

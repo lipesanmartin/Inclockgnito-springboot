@@ -1,12 +1,15 @@
 package com.sanmartindev.clockinoutbackend.controllers;
 
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
+import com.sanmartindev.clockinoutbackend.models.Worker;
 import com.sanmartindev.clockinoutbackend.services.AuthService;
-import jakarta.persistence.GeneratedValue;
+import com.sanmartindev.clockinoutbackend.services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -15,6 +18,9 @@ public class AuthController {
 
     @Autowired
     AuthService authService;
+
+    @Autowired
+    WorkerService workerService;
 
     @SuppressWarnings("rawtypes")
     @PostMapping(value = "/signin")
@@ -46,7 +52,8 @@ public class AuthController {
 
     @GetMapping(value = "/health-check")
     public ResponseEntity<?> healthCheck() {
-        return ResponseEntity.ok("OK");
+        Long number = workerService.countAll();
+        return ResponseEntity.ok(number);
     }
 
     private boolean checkIfParamsIsNotNull(String username, String refreshToken) {

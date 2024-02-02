@@ -5,6 +5,8 @@ import com.sanmartindev.clockinoutbackend.repositories.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WorkerService {
 
@@ -17,5 +19,9 @@ public class WorkerService {
 
     public Worker save(Worker worker) {
         return workerRepository.save(worker);
+    }
+
+    public Long countAll() {
+        return workerRepository.countAll();
     }
 }

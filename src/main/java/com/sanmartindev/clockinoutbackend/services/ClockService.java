@@ -25,17 +25,11 @@ public class ClockService {
         this.userRepo = userRepo;
     }
 
-    public List<Clock> findAll() {
-        return clockRepo.findAll();
-    }
 
     public List<Clock> findAllByUsername(String username) {
         return clockRepo.findAllByUsername(username);
     }
 
-    public Clock findById(Long id) {
-        return clockRepo.findById(id).orElse(null);
-    }
 
     public Long findLastId(String username) {
         List<Clock> clocks = clockRepo.findAllByUsername(username);
@@ -80,7 +74,7 @@ public class ClockService {
 
     public Clock pauseIn(String username) {
         Clock clock = clockRepo.findAllByUsername(username).getLast();
-        if (clock != null && clock.getPauseIn() == null) {
+        if (clock != null && clock.getPauseIn() == null && clock.getPauseOut() == null && clock.getClockOut() == null) {
             ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
             clock.setPauseIn(serverTime.toLocalTime());
             return clockRepo.save(clock);
@@ -88,25 +82,14 @@ public class ClockService {
         throw new ClockInvalidOperationException("Error! You don't have a running clock or you already have a pause in!");
     }
 
-    public Clock pauseOut(Long id) {
-        try {
-            Clock clock = clockRepo.findById(id).orElse(null);
-            if (clock != null) {
-                ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
-                clock.setPauseOut(serverTime.toLocalTime());
-                return clockRepo.save(clock);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    public Clock pauseOut(String username) {
+        Clock clock = clockRepo.findAllByUsername(username).getLast();
+        if (clock != null && clock.getPauseIn() != null && clock.getPauseOut() == null && clock.getClockOut() == null) {
+            ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
+            clock.setPauseOut(serverTime.toLocalTime());
+            return clockRepo.save(clock);
         }
-        return null;
+        throw new ClockInvalidOperationException("Error! You don't have a running clock or you already have a pause out!");
     }
 
-    public void delete(Long id) {
-        try {
-            clockRepo.deleteById(id);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }

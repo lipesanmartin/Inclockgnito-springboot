@@ -2,6 +2,7 @@ package com.sanmartindev.clockinoutbackend.controllers;
 
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
 import com.sanmartindev.clockinoutbackend.services.AuthService;
+import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,11 @@ public class AuthController {
         if (checkIfParamsIsNotNull(data) || data.getFullname() == null || data.getFullname().isBlank() || data.getEmail() == null || data.getEmail().isBlank())
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         return authService.createAccount(data);
+    }
+
+    @GetMapping(value = "/health-check")
+    public ResponseEntity<?> healthCheck() {
+        return ResponseEntity.ok("OK");
     }
 
     private boolean checkIfParamsIsNotNull(String username, String refreshToken) {

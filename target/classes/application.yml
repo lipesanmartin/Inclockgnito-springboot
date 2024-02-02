@@ -1,13 +1,13 @@
 security:
   jwt:
     token:
-      secret-key: b3b3tyv4mb0r4
-      expire-length: 43200000
+      secret-key: secret
+      expire-length: 3600000
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cmtvgdgcmk4c7391ktrg-a.ohio-postgres.render.com/db_inclockgnito_ciby
-    username: db_inclockgnito_ciby_user
-    password: CYQQd8GimSyAvvDu1IP5UG3UAxyMG2J4
+    url: jdbc:postgresql://localhost:5432/inclockgnito
+    username: postgres
+    password: 1234
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

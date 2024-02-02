@@ -24,15 +24,6 @@ public class ClockController {
         this.service = service;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Clock>> findAll() {
-        return ResponseEntity.ok().body(service.findAll());
-    }
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Clock> findById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.findById(id));
-    }
 
     @GetMapping(value = "/{username}/all")
     public ResponseEntity<List<Clock>> findAllByUsername(@PathVariable String username) {
@@ -47,39 +38,22 @@ public class ClockController {
 
     @GetMapping(value = "/{username}/clock-in")
     public ResponseEntity<?> clockIn(@PathVariable String username) {
-        try {
-            return ResponseEntity.ok().body(service.clockIn(username));
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        return ResponseEntity.ok().body(service.clockIn(username));
     }
 
     @GetMapping(value = "/{username}/clock-out")
     public ResponseEntity<?> clockOut(@PathVariable String username) {
-        try {
-            return ResponseEntity.ok().body(service.clockOut(username));
-        } catch (ClockInvalidOperationException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        return ResponseEntity.ok().body(service.clockOut(username));
     }
 
     @GetMapping (value = "/{username}/pause")
     public ResponseEntity<?> pauseIn(@PathVariable String username) {
-        try {
-            return ResponseEntity.ok().body(service.pauseIn(username));
-        } catch (ClockInvalidOperationException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        return ResponseEntity.ok().body(service.pauseIn(username));
     }
 
-    @GetMapping(value = "/{id}/unpause")
-    public ResponseEntity<Clock> pauseOut(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.pauseOut(id));
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
+    @GetMapping(value = "/{username}/unpause")
+    public ResponseEntity<Clock> pauseOut(@PathVariable String username) {
+        return ResponseEntity.ok().body(service.pauseOut(username));
     }
 
 }

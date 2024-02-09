@@ -66,7 +66,11 @@ public class ShiftService {
         shift.setDate(serverTime.toLocalDate());
         shift.setClockIn(serverTime.toLocalTime());
         shift.setUser(user);
-        shift.setHourlyWage(worker.getHourlyWage());
+        if (worker.getHourlyWage() != null) {
+            shift.setHourlyWage(worker.getHourlyWage());
+        } else {
+            shift.setHourlyWage(0.0);
+        }
         clockRepo.save(shift);
         return createDto(shift);
     }

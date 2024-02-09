@@ -13,11 +13,14 @@ public class AccountCredentialsVO implements Serializable {
 
     private String email;
 
-    public AccountCredentialsVO(String username, String password, String fullname, String email) {
+    private Double hourlyWage;
+
+    public AccountCredentialsVO(String username, String password, String fullname, String email, Double hourlyWage) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.email = email;
+        this.hourlyWage = hourlyWage;
     }
 
 
@@ -36,6 +39,10 @@ public class AccountCredentialsVO implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+
+    public Double getHourlyWage() {
+        return hourlyWage;
     }
 
     @Override

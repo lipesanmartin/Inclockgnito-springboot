@@ -20,6 +20,9 @@ public class Worker implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "hourly_wage")
+    private Double hourlyWage;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -49,6 +52,14 @@ public class Worker implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Double getHourlyWage() {
+        return hourlyWage;
+    }
+
+    public void setHourlyWage(Double hourlyWage) {
+        this.hourlyWage = hourlyWage;
     }
 
     public User getUser() {

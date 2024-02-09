@@ -10,9 +10,10 @@ import java.util.List;
 @Service
 public class WorkerService {
 
-    private final WorkerRepository workerRepository;
 
     @Autowired
+    private final WorkerRepository workerRepository;
+
     public WorkerService(WorkerRepository workerRepository) {
         this.workerRepository = workerRepository;
     }
@@ -24,4 +25,15 @@ public class WorkerService {
     public Long countAll() {
         return workerRepository.countAll();
     }
+
+    public Worker findByUsername(String username) {
+        return workerRepository.findByUsername(username);
+    }
+
+    public Worker updateWage(String username, Double wage) {
+        Worker worker = workerRepository.findByUsername(username);
+        worker.setHourlyWage(wage);
+        return workerRepository.save(worker);
+    }
+
 }

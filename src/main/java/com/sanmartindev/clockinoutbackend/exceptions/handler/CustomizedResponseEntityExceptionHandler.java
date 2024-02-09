@@ -1,5 +1,6 @@
 package com.sanmartindev.clockinoutbackend.exceptions.handler;
 
+import com.sanmartindev.clockinoutbackend.exceptions.ClockInvalidOperationException;
 import com.sanmartindev.clockinoutbackend.exceptions.ExceptionResponse;
 import com.sanmartindev.clockinoutbackend.exceptions.InvalidJwtAuthenticationException;
 import org.springframework.http.HttpStatus;
@@ -37,5 +38,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(ClockInvalidOperationException.class)
+    public final ResponseEntity<ExceptionResponse> handleClockInvalidOperationException(ClockInvalidOperationException ex, WebRequest request) {
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(
+                        new Date(),
+                        ex.getMessage(),
+                        request.getDescription(false)
+                );
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 
 }

@@ -1,15 +1,12 @@
 package com.sanmartindev.clockinoutbackend.controllers;
 
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
-import com.sanmartindev.clockinoutbackend.models.Worker;
 import com.sanmartindev.clockinoutbackend.services.AuthService;
 import com.sanmartindev.clockinoutbackend.services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -22,9 +19,8 @@ public class AuthController {
     @Autowired
     WorkerService workerService;
 
-    @SuppressWarnings("rawtypes")
     @PostMapping(value = "/signin")
-    public ResponseEntity signin(@RequestBody AccountCredentialsVO data) {
+    public ResponseEntity<?> signin(@RequestBody AccountCredentialsVO data) {
         if (checkIfParamsIsNotNull(data))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         var token = authService.signin(data);
@@ -32,9 +28,8 @@ public class AuthController {
         return token;
     }
 
-    @SuppressWarnings("rawtypes")
     @PutMapping(value = "/refresh/{username}")
-    public ResponseEntity refreshToken(@PathVariable("username") String username,
+    public ResponseEntity<?> refreshToken(@PathVariable("username") String username,
                                        @RequestHeader("Authorization") String refreshToken) {
         if (checkIfParamsIsNotNull(username, refreshToken))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
@@ -44,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/signup")
-    public ResponseEntity signup(@RequestBody AccountCredentialsVO data) {
+    public ResponseEntity<?> signup(@RequestBody AccountCredentialsVO data) {
         if (checkIfParamsIsNotNull(data) || data.getFullname() == null || data.getFullname().isBlank() || data.getEmail() == null || data.getEmail().isBlank())
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         return authService.createAccount(data);

@@ -13,9 +13,9 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Clock In Out API - RESTful API with Spring Boot 3.2.1")
+                        .title("Inclockgnito API - RESTful API with Spring Boot 3.2.1")
                         .version("1.0.0")
-                        .description("Clock In Out API Documentation")
+                        .description("Inclockgnito API Documentation")
                         .termsOfService("")
                         .license(new License().name("Apache 2.0")
                                 .url("http://springdoc.org")));

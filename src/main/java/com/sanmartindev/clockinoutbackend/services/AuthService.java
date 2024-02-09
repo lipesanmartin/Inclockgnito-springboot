@@ -80,6 +80,11 @@ public class AuthService {
                 user.setPassword(encodedPassword.substring(encodedPassword.indexOf("}") + 1));
             worker.setFullName(data.getFullname());
             worker.setEmail(data.getEmail());
+            if (data.getHourlyWage() != null) {
+                worker.setHourlyWage(data.getHourlyWage());
+            } else {
+                worker.setHourlyWage(0.0);
+            }
             user.setAccountNonExpired(true);
             user.setAccountNonLocked(true);
             user.setCredentialsNonExpired(true);
@@ -88,7 +93,8 @@ public class AuthService {
             userRepository.save(user);
             User userSaved = userRepository.findByUserName(data.getUsername());
             worker.setUser(userSaved);
-            return ResponseEntity.ok().body(workerService.save(worker));
+            workerService.save(worker);
+            return ResponseEntity.ok().body("Account created successfully!");
         }
     }
 

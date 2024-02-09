@@ -14,7 +14,7 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 
 ## Configuração do Banco de Dados
 
-1. Crie um banco de dados MySQL vazio com o nome `clock`.
+1. Crie um banco de dados MySQL vazio com o nome `shift`.
 2. Abra o arquivo `src/main/resources/application.properties` e configure as propriedades `spring.datasource.username` e `spring.datasource.password` com as informações do seu banco de dados.
 
 ```properties
@@ -149,4 +149,4 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 ## Testando a Aplicação
 
-Você pode testar a aplicação acessando o endpoint `http://localhost:8080/clocks` em seu navegador ou utilizando uma ferramenta como o Postman.
+Você pode testar a aplicação acessando o endpoint `http://localhost:8080/shifts` em seu navegador ou utilizando uma ferramenta como o Postman.

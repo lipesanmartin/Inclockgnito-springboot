@@ -5,13 +5,13 @@ security:
       expire-length: ${JWT_EXPIRE_LENGTH}
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cmtvgdgcmk4c7391ktrg-a.ohio-postgres.render.com/db_inclockgnito_ciby
-    username: ${DB_USER}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${JPA_HIBERNATE_DDL_AUTO}
     show-sql: false
     open-in-view: false
 springdoc:

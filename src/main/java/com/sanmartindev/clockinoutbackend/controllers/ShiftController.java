@@ -26,8 +26,8 @@ public class ShiftController {
     }
 
     @GetMapping(value = "/{username}/last")
-    public ResponseEntity<?> findLastId(@PathVariable String username) {
-        return ResponseEntity.ok().body(service.findLastId(username));
+    public ResponseEntity<?> findLastShift(@PathVariable String username) {
+        return ResponseEntity.ok().body(service.findLastShift(username));
     }
 
 

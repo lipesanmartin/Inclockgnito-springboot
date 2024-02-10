@@ -113,7 +113,8 @@ public class Shift implements Serializable {
 
     public void setValueTimesHours() {
         double totalHours = this.totalTime.getHour() + (double) this.totalTime.getMinute() / 60 + (double) this.totalTime.getSecond() / 3600;
-        this.valueTimesHours = totalHours * this.hourlyWage;;
+        double valueTimesHours = totalHours * this.hourlyWage;
+        this.valueTimesHours = Math.round(valueTimesHours * 100.0) / 100.0;
     }
 
     public Double getHourlyWage() {
@@ -163,7 +164,8 @@ public class Shift implements Serializable {
     }
 
     public void setTotalValue() {
-        this.totalValue = this.valueTimesHours + BonusForKilometer.calculateBonus(this.kilometers);
+        double calculatedValue = this.valueTimesHours + BonusForKilometer.calculateBonus(this.kilometers);
+        this.totalValue = Math.round(calculatedValue * 100.0) / 100.0;
     }
 
     @Override

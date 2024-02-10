@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/clocks")
+@RequestMapping(value = "/api/shifts")
 @Tag(name = "Shifts", description = "Shifts API")
 public class ShiftController {
 

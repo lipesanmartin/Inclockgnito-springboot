@@ -1,17 +1,17 @@
 security:
   jwt:
     token:
-      secret-key: secret
-      expire-length: 3600000
+      secret-key: ${JWT_SECRET_KEY}
+      expire-length: ${JWT_EXPIRE_LENGTH}
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/inclockgnito
-    username: postgres
-    password: 1234
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${JPA_HIBERNATE_DDL_AUTO}
     show-sql: false
     open-in-view: false
 springdoc:

@@ -51,6 +51,15 @@ public class ShiftService {
         }
     }
 
+    public ShiftDto findLastShift(String username) {
+        List<Shift> shifts = clockRepo.findAllByUsername(username);
+        if (!shifts.isEmpty()) {
+            return createDto(shifts.getLast());
+        } else {
+            return null;
+        }
+    }
+
     public ShiftDto clockIn(String username) {
         User user = userRepo.findByUserName(username);
         Worker worker = workerRepo.findByUsername(username);

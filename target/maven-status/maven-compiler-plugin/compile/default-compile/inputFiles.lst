@@ -13,6 +13,7 @@ C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\services\WorkerService.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\controllers\WorkerController.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\configs\CorsConfig.java
+C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\data\vo\security\PasswordVO.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\InclockgnitoBackendApplication.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\data\vo\security\AccountCredentialsVO.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\exceptions\ClockInvalidOperationException.java

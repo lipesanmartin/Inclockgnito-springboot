@@ -2,6 +2,7 @@ package com.sanmartindev.clockinoutbackend.services;
 
 import com.sanmartindev.clockinoutbackend.configs.SecurityConfig;
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
+import com.sanmartindev.clockinoutbackend.data.vo.security.PasswordVO;
 import com.sanmartindev.clockinoutbackend.data.vo.security.TokenVO;
 import com.sanmartindev.clockinoutbackend.models.User;
 import com.sanmartindev.clockinoutbackend.models.Worker;
@@ -89,7 +90,7 @@ public class AuthService {
             user.setAccountNonLocked(true);
             user.setCredentialsNonExpired(true);
             user.setEnabled(true);
-            user.setPermissions(permissionRepository.findAll());
+            user.setPermissions(permissionRepository.findByDescription("COMMON USER"));
             userRepository.save(user);
             User userSaved = userRepository.findByUserName(data.getUsername());
             worker.setUser(userSaved);

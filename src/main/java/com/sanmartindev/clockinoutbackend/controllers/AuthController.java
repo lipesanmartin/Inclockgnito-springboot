@@ -1,6 +1,7 @@
 package com.sanmartindev.clockinoutbackend.controllers;
 
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
+import com.sanmartindev.clockinoutbackend.data.vo.security.PasswordVO;
 import com.sanmartindev.clockinoutbackend.services.AuthService;
 import com.sanmartindev.clockinoutbackend.services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;

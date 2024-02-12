@@ -21,6 +21,7 @@ C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\controllers\ShiftController.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\exceptions\InvalidJwtAuthenticationException.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\interfaces\BonusForKilometer.java
+C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\exceptions\UsernameAlreadyInUseException.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\controllers\AuthController.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\security\Jwt\JwtTokenProvider.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\configs\OpenApiConfig.java

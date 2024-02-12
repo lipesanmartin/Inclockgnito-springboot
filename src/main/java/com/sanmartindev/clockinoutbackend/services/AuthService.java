@@ -3,6 +3,7 @@ package com.sanmartindev.clockinoutbackend.services;
 import com.sanmartindev.clockinoutbackend.configs.SecurityConfig;
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
 import com.sanmartindev.clockinoutbackend.data.vo.security.TokenVO;
+import com.sanmartindev.clockinoutbackend.exceptions.UsernameAlreadyInUseException;
 import com.sanmartindev.clockinoutbackend.models.User;
 import com.sanmartindev.clockinoutbackend.models.Worker;
 import com.sanmartindev.clockinoutbackend.repositories.PermissionRepository;
@@ -67,7 +68,7 @@ public class AuthService {
     @Transactional
     public ResponseEntity createAccount(AccountCredentialsVO data) {
         if (userRepository.findByUserNameIgnoreCase(data.getUsername()) != null) {
-            throw new BadCredentialsException("Username already exists!");
+            throw new UsernameAlreadyInUseException("Username already in use!");
         }
         if (workerRepository.findByEmailIgnoreCase(data.getEmail()) != null) {
             throw new BadCredentialsException("Email already in use!");

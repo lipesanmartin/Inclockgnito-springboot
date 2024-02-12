@@ -3,6 +3,7 @@ package com.sanmartindev.clockinoutbackend.exceptions.handler;
 import com.sanmartindev.clockinoutbackend.exceptions.ClockInvalidOperationException;
 import com.sanmartindev.clockinoutbackend.exceptions.ExceptionResponse;
 import com.sanmartindev.clockinoutbackend.exceptions.InvalidJwtAuthenticationException;
+import com.sanmartindev.clockinoutbackend.exceptions.UsernameAlreadyInUseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -47,6 +48,17 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                         request.getDescription(false)
                 );
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UsernameAlreadyInUseException.class)
+    public final ResponseEntity<ExceptionResponse> handleUsernameAlreadyInUseException(UsernameAlreadyInUseException ex, WebRequest request) {
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(
+                        new Date(),
+                        ex.getMessage(),
+                        request.getDescription(false)
+                );
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.CONFLICT);
     }
 
 }

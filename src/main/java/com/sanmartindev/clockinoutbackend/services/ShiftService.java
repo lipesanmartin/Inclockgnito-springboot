@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class ShiftService {
 
-    private final ShiftRepository clockRepo;
+    private final ShiftRepository shiftRepo;
 
     private final UserRepository userRepo;
 
@@ -27,14 +27,14 @@ public class ShiftService {
 
     @Autowired
     public ShiftService(ShiftRepository repo, UserRepository userRepo, WorkerRepository workerRepo) {
-        this.clockRepo = repo;
+        this.shiftRepo = repo;
         this.userRepo = userRepo;
         this.workerRepo = workerRepo;
     }
 
 
     public List<ShiftDto> findAllByUsername(String username) {
-        List<Shift> shifts = clockRepo.findAllByUsername(username);
+        List<Shift> shifts = shiftRepo.findAllByUsername(username);
         List<ShiftDto> shiftDtos = new ArrayList<>();
         for (Shift shift : shifts) {
             shiftDtos.add(createDto(shift));
@@ -43,7 +43,7 @@ public class ShiftService {
     }
 
     public Long findLastId(String username) {
-        List<Shift> shifts = clockRepo.findAllByUsername(username);
+        List<Shift> shifts = shiftRepo.findAllByUsername(username);
         if (!shifts.isEmpty()) {
             return shifts.getLast().getId();
         } else {
@@ -52,7 +52,7 @@ public class ShiftService {
     }
 
     public ShiftDto findLastShift(String username) {
-        List<Shift> shifts = clockRepo.findAllByUsername(username);
+        List<Shift> shifts = shiftRepo.findAllByUsername(username);
         if (!shifts.isEmpty()) {
             return createDto(shifts.getLast());
         } else {
@@ -66,7 +66,7 @@ public class ShiftService {
         if (user == null || worker == null) {
             return null;
         }
-        List<Shift> shifts = clockRepo.findAllByUsername(username);
+        List<Shift> shifts = shiftRepo.findAllByUsername(username);
         if (!shifts.isEmpty() && shifts.get(shifts.size() - 1).getClockOut() == null) {
             throw new ClockInvalidOperationException("Error! You already have a running shift!");
         }
@@ -80,12 +80,12 @@ public class ShiftService {
         } else {
             shift.setHourlyWage(0.0);
         }
-        clockRepo.save(shift);
+        shiftRepo.save(shift);
         return createDto(shift);
     }
 
     public ShiftDto clockOut(String username) {
-        Shift shift = clockRepo.findAllByUsername(username).getLast();
+        Shift shift = shiftRepo.findAllByUsername(username).getLast();
         if (shift.getClockOut() != null) {
             throw new ClockInvalidOperationException("Error! Shift out already done or you don't have a running shift!");
         }
@@ -94,7 +94,7 @@ public class ShiftService {
             shift.setClockOut(serverTime.toLocalTime());
             shift.setTotalTime(shift.getClockIn(), shift.getClockOut());
             shift.setValueTimesHours();
-            clockRepo.save(shift);
+            shiftRepo.save(shift);
             return createDto(shift);
 
         }
@@ -102,33 +102,33 @@ public class ShiftService {
     }
 
     public ShiftDto pauseIn(String username) {
-        Shift shift = clockRepo.findAllByUsername(username).getLast();
+        Shift shift = shiftRepo.findAllByUsername(username).getLast();
         if (shift != null && shift.getPauseIn() == null && shift.getPauseOut() == null && shift.getClockOut() == null) {
             ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
             shift.setPauseIn(serverTime.toLocalTime());
-            clockRepo.save(shift);
+            shiftRepo.save(shift);
             return createDto(shift);
         }
         throw new ClockInvalidOperationException("Error! You don't have a running shift or you already have a pause in!");
     }
 
     public ShiftDto pauseOut(String username) {
-        Shift shift = clockRepo.findAllByUsername(username).getLast();
+        Shift shift = shiftRepo.findAllByUsername(username).getLast();
         if (shift != null && shift.getPauseIn() != null && shift.getPauseOut() == null && shift.getClockOut() == null) {
             ZonedDateTime serverTime = ZonedDateTime.now(ZoneId.of("GMT")).withNano(0);
             shift.setPauseOut(serverTime.toLocalTime());
-            clockRepo.save(shift);
+            shiftRepo.save(shift);
             return createDto(shift);
         }
         throw new ClockInvalidOperationException("Error! You don't have a running shift or you already have a pause out!");
     }
 
     public ShiftDto setKilometers(String username, Double kilometers) {
-        Shift shift = clockRepo.findAllByUsername(username).getLast();
+        Shift shift = shiftRepo.findAllByUsername(username).getLast();
         if (shift != null) {
             shift.setKilometers(kilometers);
             shift.setTotalValue();
-            clockRepo.save(shift);
+            shiftRepo.save(shift);
             return createDto(shift);
         }
         return null;

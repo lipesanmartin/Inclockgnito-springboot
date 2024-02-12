@@ -118,4 +118,15 @@ public class JwtTokenProvider {
             throw new InvalidJwtAuthenticationException("Expired or invalid JWT token!");
         }
     }
+
+    public String getJwtUsername(String token) {
+        DecodedJWT decodedJWT = decodedToken(token);
+        return decodedJWT.getSubject();
+    }
+
+    public boolean hasRole(String token, String role) {
+        DecodedJWT decodedJWT = decodedToken(token);
+        List<String> roles = decodedJWT.getClaim("roles").asList(String.class);
+        return roles.contains(role);
+    }
 }

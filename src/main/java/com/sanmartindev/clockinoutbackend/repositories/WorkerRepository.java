@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WorkerRepository extends JpaRepository<Worker, Long>{
 
-    @Query("SELECT w FROM Worker w WHERE w.email = :email")
-    Worker findByEmail(String email);
+    @Query("SELECT w FROM Worker w WHERE LOWER(w.email)  = LOWER(:email)")
+    Worker findByEmailIgnoreCase(String email);
 
     @Query("SELECT w FROM Worker w WHERE w.user.username = :username")
     Worker findByUsername(String username);

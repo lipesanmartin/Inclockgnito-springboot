@@ -2,7 +2,6 @@ package com.sanmartindev.clockinoutbackend.services;
 
 import com.sanmartindev.clockinoutbackend.configs.SecurityConfig;
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
-import com.sanmartindev.clockinoutbackend.data.vo.security.PasswordVO;
 import com.sanmartindev.clockinoutbackend.data.vo.security.TokenVO;
 import com.sanmartindev.clockinoutbackend.models.User;
 import com.sanmartindev.clockinoutbackend.models.Worker;
@@ -51,7 +50,7 @@ public class AuthService {
             String username = data.getUsername();
             String password = data.getPassword();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-            var user = userRepository.findByUserName(username);
+            var user = userRepository.findByUserNameIgnoreCase(username);
             var tokenResponse = new TokenVO();
             if (user != null) {
                 tokenResponse = tokenProvider.createAccessToken(username, user.getRoles());
@@ -67,10 +66,10 @@ public class AuthService {
     @SuppressWarnings("rawtypes")
     @Transactional
     public ResponseEntity createAccount(AccountCredentialsVO data) {
-        if (userRepository.findByUserName(data.getUsername()) != null) {
+        if (userRepository.findByUserNameIgnoreCase(data.getUsername()) != null) {
             throw new BadCredentialsException("Username already exists!");
         }
-        if (workerRepository.findByEmail(data.getEmail()) != null) {
+        if (workerRepository.findByEmailIgnoreCase(data.getEmail()) != null) {
             throw new BadCredentialsException("Email already in use!");
         } else {
             User user = new User();
@@ -92,7 +91,7 @@ public class AuthService {
             user.setEnabled(true);
             user.setPermissions(permissionRepository.findByDescription("COMMON USER"));
             userRepository.save(user);
-            User userSaved = userRepository.findByUserName(data.getUsername());
+            User userSaved = userRepository.findByUserNameIgnoreCase(data.getUsername());
             worker.setUser(userSaved);
             workerService.save(worker);
             return ResponseEntity.ok().body("Account created successfully!");
@@ -101,7 +100,7 @@ public class AuthService {
 
     @SuppressWarnings("rawtypes")
     public ResponseEntity refreshToken(String username, String refreshToken) {
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUserNameIgnoreCase(username);
         var tokenResponse = new TokenVO();
         if (user != null) {
             tokenResponse = tokenProvider.refreshToken(refreshToken);

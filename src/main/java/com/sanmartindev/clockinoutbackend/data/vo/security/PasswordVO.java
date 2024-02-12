@@ -9,7 +9,6 @@ public class PasswordVO {
         this.newPassword = newPassword;
     }
 
-
     public String getOldPassword() {
         return oldPassword;
     }
@@ -18,13 +17,5 @@ public class PasswordVO {
         return newPassword;
     }
 
-
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
 
 }

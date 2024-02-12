@@ -13,8 +13,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class WorkerService {
 
@@ -54,7 +52,7 @@ public class WorkerService {
     public ResponseEntity<?> changePassword(String username, PasswordVO data) {
         String oldPassword = data.getOldPassword();
         String newPassword = data.getNewPassword();
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUserNameIgnoreCase(username);
         if (user != null) {
             if (securityConfig.passwordEncoder().matches(oldPassword, user.getPassword())) {
                 String encodedPassword = securityConfig.passwordEncoder().encode(newPassword);

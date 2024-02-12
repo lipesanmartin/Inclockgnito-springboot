@@ -61,7 +61,7 @@ public class ShiftService {
     }
 
     public ShiftDto clockIn(String username) {
-        User user = userRepo.findByUserName(username);
+        User user = userRepo.findByUserNameIgnoreCase(username);
         Worker worker = workerRepo.findByUsername(username);
         if (user == null || worker == null) {
             return null;

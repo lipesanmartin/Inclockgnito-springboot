@@ -17,7 +17,7 @@ public class Worker implements Serializable {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "hourly_wage")

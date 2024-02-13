@@ -90,7 +90,7 @@ public class AuthService {
             user.setAccountNonLocked(true);
             user.setCredentialsNonExpired(true);
             user.setEnabled(true);
-            user.setPermissions(permissionRepository.findByDescription("COMMON USER"));
+            user.setPermissions(permissionRepository.findByDescription("COMMON_USER"));
             userRepository.save(user);
             User userSaved = userRepository.findByUserNameIgnoreCase(data.getUsername());
             worker.setUser(userSaved);

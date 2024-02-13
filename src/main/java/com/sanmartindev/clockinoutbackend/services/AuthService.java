@@ -45,8 +45,7 @@ public class AuthService {
     private WorkerRepository workerRepository;
 
 
-    @SuppressWarnings("rawtypes")
-    public ResponseEntity signin(AccountCredentialsVO data) {
+    public ResponseEntity<?> signin(AccountCredentialsVO data) {
         try {
             String username = data.getUsername();
             String password = data.getPassword();
@@ -64,9 +63,8 @@ public class AuthService {
         }
     }
 
-    @SuppressWarnings("rawtypes")
     @Transactional
-    public ResponseEntity createAccount(AccountCredentialsVO data) {
+    public ResponseEntity<?> createAccount(AccountCredentialsVO data) {
         if (userRepository.findByUserNameIgnoreCase(data.getUsername()) != null) {
             throw new UsernameAlreadyInUseException("Username already in use!");
         }
@@ -99,8 +97,7 @@ public class AuthService {
         }
     }
 
-    @SuppressWarnings("rawtypes")
-    public ResponseEntity refreshToken(String username, String refreshToken) {
+    public ResponseEntity<?> refreshToken(String username, String refreshToken) {
         User user = userRepository.findByUserNameIgnoreCase(username);
         var tokenResponse = new TokenVO();
         if (user != null) {

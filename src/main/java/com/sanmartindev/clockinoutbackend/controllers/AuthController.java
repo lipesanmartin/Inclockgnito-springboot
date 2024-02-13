@@ -1,7 +1,6 @@
 package com.sanmartindev.clockinoutbackend.controllers;
 
 import com.sanmartindev.clockinoutbackend.data.vo.security.AccountCredentialsVO;
-import com.sanmartindev.clockinoutbackend.data.vo.security.PasswordVO;
 import com.sanmartindev.clockinoutbackend.services.AuthService;
 import com.sanmartindev.clockinoutbackend.services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,7 @@ public class AuthController {
     @GetMapping(value = "/health-check")
     public ResponseEntity<?> healthCheck() {
         Long number = workerService.countAll();
-        return ResponseEntity.ok(number);
+        return ResponseEntity.ok().build();
     }
 
     private boolean checkIfParamsIsNotNull(String username, String refreshToken) {

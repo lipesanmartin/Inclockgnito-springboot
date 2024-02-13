@@ -1,6 +1,6 @@
 package com.sanmartindev.clockinoutbackend.services;
 
-import com.sanmartindev.clockinoutbackend.Dto.ShiftDto;
+import com.sanmartindev.clockinoutbackend.dto.ShiftDto;
 import com.sanmartindev.clockinoutbackend.exceptions.ClockInvalidOperationException;
 import com.sanmartindev.clockinoutbackend.models.Shift;
 import com.sanmartindev.clockinoutbackend.models.User;
@@ -62,7 +62,7 @@ public class ShiftService {
 
     public ShiftDto clockIn(String username) {
         User user = userRepo.findByUserNameIgnoreCase(username);
-        Worker worker = workerRepo.findByUsername(username);
+        Worker worker = workerRepo.findByUsernameIgnoreCase(username);
         if (user == null || worker == null) {
             return null;
         }

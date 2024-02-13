@@ -1,7 +1,7 @@
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\services\AuthService.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\repositories\UserRepository.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\repositories\PermissionRepository.java
-C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\Dto\ShiftDto.java
+C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\dto\ShiftDto.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\exceptions\ExceptionResponse.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\repositories\ShiftRepository.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\models\Permission.java
@@ -9,6 +9,7 @@ C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\services\UserService.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\repositories\WorkerRepository.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\services\ShiftService.java
+C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\dto\WorkerDto.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\security\Jwt\JwtTokenFilter.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\services\WorkerService.java
 C:\Users\fsa22\ProjetoBetinho\Inclockgnito-Spring-Boot-Backend\Inclockgnito\src\main\java\com\sanmartindev\clockinoutbackend\controllers\WorkerController.java

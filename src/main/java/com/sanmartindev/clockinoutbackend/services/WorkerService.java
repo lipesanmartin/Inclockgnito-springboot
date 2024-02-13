@@ -2,6 +2,7 @@ package com.sanmartindev.clockinoutbackend.services;
 
 import com.sanmartindev.clockinoutbackend.configs.SecurityConfig;
 import com.sanmartindev.clockinoutbackend.data.vo.security.PasswordVO;
+import com.sanmartindev.clockinoutbackend.dto.WorkerDto;
 import com.sanmartindev.clockinoutbackend.models.User;
 import com.sanmartindev.clockinoutbackend.models.Worker;
 import com.sanmartindev.clockinoutbackend.repositories.UserRepository;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WorkerService {
@@ -38,12 +41,21 @@ public class WorkerService {
         return workerRepository.countAll();
     }
 
-    public Worker findByUsername(String username) {
-        return workerRepository.findByUsername(username);
+    public List<Worker> findAll() {
+        return workerRepository.findAll();
+    }
+
+    public WorkerDto findByUsernameIgnoreCase(String username) {
+        Worker worker = workerRepository.findByUsernameIgnoreCase(username);
+        if (worker != null) {
+            return buildDto(worker);
+        } else {
+            throw new UsernameNotFoundException("Username " + username + " not found!");
+        }
     }
 
     public Worker updateWage(String username, Double wage) {
-        Worker worker = workerRepository.findByUsername(username);
+        Worker worker = workerRepository.findByUsernameIgnoreCase(username);
         worker.setHourlyWage(wage);
         return workerRepository.save(worker);
     }
@@ -67,6 +79,15 @@ public class WorkerService {
             throw new UsernameNotFoundException("Username " + username + " not found!");
         }
 
+    }
+
+    public WorkerDto buildDto(Worker worker) {
+        WorkerDto workerDto = new WorkerDto();
+        workerDto.setUsername(worker.getUser().getUsername());
+        workerDto.setFullname(worker.getFullName());
+        workerDto.setEmail(worker.getEmail());
+        workerDto.setHourlyWage(worker.getHourlyWage());
+        return workerDto;
     }
 
 }

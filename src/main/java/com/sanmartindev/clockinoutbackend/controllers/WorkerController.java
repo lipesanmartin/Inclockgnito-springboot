@@ -27,13 +27,21 @@ public class WorkerController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    @GetMapping(value = "/all")
+    public ResponseEntity<?> findAll(HttpServletRequest request) {
+        if (!jwtTokenProvider.hasRole(jwtTokenProvider.resolveToken(request), "ADMIN")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Você não tem permissão para acessar os dados de todos os usuários.");
+        }
+        return ResponseEntity.ok().body(workerService.findAll());
+    }
+
     @GetMapping(value = "/{username}")
     public ResponseEntity<?> findByUsername(@PathVariable String username, HttpServletRequest request) {
         String jwtUsername = jwtTokenProvider.getJwtUsername(jwtTokenProvider.resolveToken(request));
         if (!jwtUsername.equals(username) && !jwtTokenProvider.hasRole(jwtTokenProvider.resolveToken(request), "ADMIN")) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Você não tem permissão para acessar os dados de outro usuário.");
         }
-        return ResponseEntity.ok().body(workerService.findByUsername(username));
+        return ResponseEntity.ok().body(workerService.findByUsernameIgnoreCase(username));
     }
 
     @PutMapping(value = "/{username}/update-wage")

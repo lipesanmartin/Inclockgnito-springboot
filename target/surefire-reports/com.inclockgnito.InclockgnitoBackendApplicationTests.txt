@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.inclockgnito.InclockgnitoBackendApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.91 s -- in com.inclockgnito.InclockgnitoBackendApplicationTests

@@ -1,0 +1,26 @@
+security:
+  jwt:
+    token:
+      secret-key: ${JWT_SECRET_KEY}
+      expire-length: ${JWT_EXPIRE_LENGTH}
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_HIBERNATE_DDL_AUTO}
+    show-sql: false
+    open-in-view: false
+springdoc:
+  pathsToMatch:
+    - /api/**
+    - /auth/**
+  swagger-ui:
+    use-root-path: true
+
+
+
+

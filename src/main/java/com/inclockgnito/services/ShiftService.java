@@ -55,7 +55,7 @@ public class ShiftService {
         if (!shifts.isEmpty()) {
             return createDto(shifts.getLast());
         } else {
-            return null;
+            return new ShiftDto();
         }
     }
 

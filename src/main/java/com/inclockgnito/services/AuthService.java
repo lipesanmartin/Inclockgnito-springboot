@@ -50,7 +50,7 @@ public class AuthService {
             String username = data.getUsername();
             String password = data.getPassword();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-            var user = userRepository.findByUserNameIgnoreCase(username);
+            User user = userRepository.findByUserNameIgnoreCase(username);
             var tokenResponse = new TokenVO();
             if (user != null) {
                 tokenResponse = tokenProvider.createAccessToken(user.getUsername(), user.getRoles());

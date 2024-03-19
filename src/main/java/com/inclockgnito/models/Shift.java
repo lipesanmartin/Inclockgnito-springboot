@@ -164,7 +164,10 @@ public class Shift implements Serializable {
     }
 
     public void setTotalValue() {
-        double calculatedValue = this.valueTimesHours + BonusForKilometer.calculateBonus(this.kilometers);
+        double calculatedValue = this.valueTimesHours;
+        if (this.kilometers > 40.0) {
+            calculatedValue += BonusForKilometer.calculateBonus(this.kilometers - 40.0);
+        }
         this.totalValue = Math.round(calculatedValue * 100.0) / 100.0;
     }
 

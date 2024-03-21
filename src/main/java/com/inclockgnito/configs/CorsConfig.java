@@ -14,6 +14,7 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("${LOCAL_URL}");
         config.addAllowedOrigin("${VERCEL_URL}");
+        config.addAllowedOrigin("${INCLOCKGNITO_URL}");
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", config);
